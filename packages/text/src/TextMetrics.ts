@@ -288,10 +288,13 @@ export class TextMetrics
         const lineHeight = style.lineHeight || fontProperties.fontSize + style.strokeThickness;
         let height = lineHeight;
 
-        if(TextMetrics.nextLineHeightBehavior) {
+        if (TextMetrics.nextLineHeightBehavior)
+        {
             height = Math.max(lineHeight, fontProperties.fontSize + (style.strokeThickness * 2)) + style.leading
             + ((lines.length - 1) * (lineHeight + style.leading));
-        } else {
+        }
+        else
+        {
             height = Math.max(lineHeight, fontProperties.fontSize + style.strokeThickness)
             + ((lines.length - 1) * (lineHeight + style.leading));
         }
