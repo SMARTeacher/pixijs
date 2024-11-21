@@ -73,6 +73,14 @@ const contextSettings: ICanvasRenderingContext2DSettings = {
  */
 export class TextMetrics
 {
+    /**
+     * New behavior for `lineHeight` that's meant to mimic HTML text. A value of `true` will
+     * make sure the first baseline is offset by the `lineHeight` value if it is greater than `fontSize`.
+     * A value of `false` will use the legacy behavior and not change the baseline of the first line.
+     * Enabled by default as of pixi 7.
+     */
+    public static nextLineHeightBehavior = true;
+
     /** The text that was measured. */
     public text: string;
 
@@ -278,9 +286,15 @@ export class TextMetrics
         }
 
         const lineHeight = style.lineHeight || fontProperties.fontSize + style.strokeThickness;
-        let height
-            = Math.max(lineHeight, fontProperties.fontSize + (style.strokeThickness * 2)) + style.leading
+        let height = lineHeight;
+
+        if(TextMetrics.nextLineHeightBehavior) {
+            height = Math.max(lineHeight, fontProperties.fontSize + (style.strokeThickness * 2)) + style.leading
             + ((lines.length - 1) * (lineHeight + style.leading));
+        } else {
+            height = Math.max(lineHeight, fontProperties.fontSize + style.strokeThickness)
+            + ((lines.length - 1) * (lineHeight + style.leading));
+        }
 
         if (style.dropShadow)
         {

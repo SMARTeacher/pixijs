@@ -292,7 +292,7 @@ export class Text extends Sprite
 
             let linePositionYShift = (lineHeight - fontProperties.fontSize) / 2;
 
-            if (lineHeight - fontProperties.fontSize < 0)
+            if (!TextMetrics.nextLineHeightBehavior || lineHeight - fontProperties.fontSize < 0)
             {
                 linePositionYShift = 0;
             }
