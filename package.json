@@ -90,7 +90,7 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "dts-bundle-generator": "^9.3.1",
-    "esbuild": "^0.19.0",
+    "esbuild": "^0.25.0",
     "eslint": "^8.38.0",
     "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-jsdoc": "^48.0.0",
